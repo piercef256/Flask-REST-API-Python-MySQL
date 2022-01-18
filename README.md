@@ -1,5 +1,10 @@
 # Flask-REST-API-Python-MySQL
 
+### What is this project?
+
+- This is a REST API backend built using Flask and MySQL.
+- Users can perform C.R.U.D. operations on a todolist MySQL database table.
+
 ### MySQL setup
 
 1. Create table
