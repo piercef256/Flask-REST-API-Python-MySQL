@@ -40,4 +40,22 @@ pip install -r requirements.txt
 python api.py
 ```
 
-3. Send raw JSON requests to http://127.0.0.1:5000/todos (examples can be found in tests folder)
+3. Send raw JSON requests to http://127.0.0.1:5000/todos
+4. Examples (more examples can be found in tests folder):
+```
+Request Method: PUT
+Request Endpoint: http://127.0.0.1:5000/todos/1
+Request Body:
+{
+    "task":"hello new"
+}
+```
+```
+Request Method: POST
+Request Endpoint: http://127.0.0.1:5000/todos
+Request Body:
+{
+    "task":"hello4"
+}
+```
+
