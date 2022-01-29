@@ -4,6 +4,7 @@
 
 - This is a REST API backend built using Flask and MySQL.
 - Users can perform C.R.U.D. operations on a todolist MySQL database table.
+- User can use thier own database or use mine via this endpoint: ```flask-sql.azurewebsites.net/```.
 
 ### MySQL setup
 
