@@ -1,6 +1,6 @@
-import api
 from flask import Flask
 app = Flask(__name__)
+import api
 
 
 @app.route("/")
@@ -28,9 +28,10 @@ def update_todo(id):
     return api.update_todo(id)
 
 
+
 @app.route("/todos/<id>", methods=["DELETE"])
 def delete_todo(id):
-    return api.delete_todo(id)
+        return api.delete_todo(id)
 
 
 if __name__ == "__main__":
