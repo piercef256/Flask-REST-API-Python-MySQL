@@ -17,8 +17,32 @@ def not_found(error=None):
     return resp
 
 
+def create_todo():
+    try:
+        _json = request.json
+        _task = _json['task']
 
-@app.route("/todos", methods=["GET"])
+        # validate the received values
+        if _task and request.method == "POST":
+            # save edits
+            sql = "INSERT INTO todos(task) VALUES(%s)"
+            data = (_task)
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute(sql, data)
+            conn.commit()
+            resp = jsonify("Todo added successfully!")
+            resp.status_code = 201
+            return resp
+        else:
+            return not_found()
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
 def todos():
     try:
         conn = mysql.connect()
@@ -35,34 +59,6 @@ def todos():
         conn.close()
 
 
-@app.route("/todos", methods=["POST"])
-def create_todo():
-    try:
-        _json = request.json
-        _task = _json['task']
-
-        # validate the received values
-        if _task and request.method == "POST":
-            # save edits
-            sql = "INSERT INTO todos(task) VALUES(%s)"
-            data = (_task)
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(sql, data)
-            conn.commit()
-            resp = jsonify("Todo added successfully!")
-            resp.status_code = 200
-            return resp
-        else:
-            return not_found()
-    except Exception as e:
-        print(e)
-    finally:
-        cursor.close()
-        conn.close()
-
-
-@app.route("/todos/<id>", methods=["GET"])
 def todo(id):
     try:
         conn = mysql.connect()
@@ -79,7 +75,6 @@ def todo(id):
         conn.close()
 
 
-@app.route("/todos/<id>", methods=["PUT"])
 def update_todo(id):
     try:
         _json = request.json
@@ -106,7 +101,6 @@ def update_todo(id):
         conn.close()
 
 
-@app.route("/todos/<id>", methods=["DELETE"])
 def delete_todo(id):
     try:
         conn = mysql.connect()
@@ -114,14 +108,10 @@ def delete_todo(id):
         cursor.execute("DELETE FROM todos WHERE id=%s", (id,))
         conn.commit()
         resp = jsonify("Todo deleted successfully!")
-        resp.status_code = 200
+        resp.status_code = 204
         return resp
     except Exception as e:
         print(e)
     finally:
         cursor.close()
         conn.close()
-
-
-if __name__ == "__main__":
-    app.run()
