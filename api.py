@@ -1,8 +1,8 @@
 import pymysql
-from app import app
 from db_config import mysql
 from flask import jsonify
 from flask import request
+from app import app
 
 
 @app.errorhandler(404)
