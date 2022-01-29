@@ -44,8 +44,8 @@ def create_todo():
 
 
 def todos():
-        conn = mysql.connect()
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
     try:
         cursor.execute("SELECT * FROM todos")
         rows = cursor.fetchall()
