@@ -44,9 +44,9 @@ def create_todo():
 
 
 def todos():
-    try:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
+    try:
         cursor.execute("SELECT * FROM todos")
         rows = cursor.fetchall()
         resp = jsonify(rows)
