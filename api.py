@@ -17,10 +17,6 @@ def not_found(error=None):
     return resp
 
 
-@app.route("/")
-def hello():
-    return "Hello, World!"
-
 
 @app.route("/todos", methods=["GET"])
 def todos():
