@@ -12,7 +12,7 @@ def not_found(error=None):
         "message": "Not Found: " + request.url,
     }
     resp = jsonify(message)
-    resp.status_code(404)
+    resp.status_code = 404
 
     return resp
 
