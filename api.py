@@ -21,12 +21,23 @@ def create_todo():
     try:
         _json = request.json
         _task = _json['task']
+        _id = None
+        
+        # check if id exist in _json
+        if 'id' in _json:
+            _id = _json['id']
+
+              
 
         # validate the received values
         if _task and request.method == "POST":
             # save edits
             sql = "INSERT INTO todos(task) VALUES(%s)"
             data = (_task)
+            if _id is not None:
+                data = (_id, _task)
+                sql = "INSERT INTO todos VALUES(%s, %s)"
+                
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute(sql, data)
