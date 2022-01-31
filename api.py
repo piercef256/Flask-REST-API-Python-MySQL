@@ -119,7 +119,7 @@ def delete_todo(id):
         cursor.execute("DELETE FROM todos WHERE id=%s", (id,))
         conn.commit()
         resp = jsonify("Todo deleted successfully!")
-        resp.status_code = 204
+        resp.status_code = 200
         return resp
     except Exception as e:
         print(e)
